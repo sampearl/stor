@@ -1,0 +1,1318 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>DNAnexus &mdash; stor 3.0.5 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Posix" href="posix.html" />
+    <link rel="prev" title="S3" href="s3.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="toc.html" class="icon icon-home"> stor
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                3.0.5
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="index.html">stor Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cli.html">CLI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="main_interface.html">Main Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="swift.html">Swift</a></li>
+<li class="toctree-l1"><a class="reference internal" href="s3.html">S3</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">DNAnexus</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#canonical-paths-on-dnanexus">Canonical Paths on DNAnexus</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#directories-on-dnanexus">Directories on DNAnexus</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#files-on-dnanexus">Files on DNAnexus</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dxpath-on-stor">DXPath on stor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#duplicate-names-on-dnanexus">Duplicate names on DNAnexus</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-stor.dx">DXPath</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#copy-and-copytree-by-example">Copy and copytree by example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#list-listdir-and-walkfiles">List, Listdir and walkfiles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#open-on-stor">Open on stor</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="posix.html">Posix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="windows.html">Windows</a></li>
+<li class="toctree-l1"><a class="reference internal" href="exceptions.html">Stor Python Exceptions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="testing.html">Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="settings.html">Settings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extensions.html">SwiftStack Extension</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="roadmap.html">Roadmap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="release_notes.html">Release Notes</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="toc.html">stor</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="toc.html">Docs</a> &raquo;</li>
+        
+      <li>DNAnexus</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/dx.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="dnanexus">
+<span id="dx"></span><h1>DNAnexus<a class="headerlink" href="#dnanexus" title="Permalink to this headline">¶</a></h1>
+<p>DNAnexus paths on stor are prefixed with <code class="docutils literal notranslate"><span class="pre">dx://</span></code> and have two components:
+<code class="docutils literal notranslate"><span class="pre">dx://&lt;PROJECT&gt;:&lt;FILE_OR_FOLDER&gt;</span></code>
+where project and file can be virtual paths (i.e., human names) or canonical paths
+(opaque globally unique IDs that the platform assigns) - see below for more details.</p>
+<div class="section" id="canonical-paths-on-dnanexus">
+<h2>Canonical Paths on DNAnexus<a class="headerlink" href="#canonical-paths-on-dnanexus" title="Permalink to this headline">¶</a></h2>
+<p>Files on DNAnexus have a globally unique immutable handle (called a dxid) and also a
+virtual path in each project. DNAnexus only allows one copy of a file to be in a specific
+project. Also, since the canonicalized path to the file on DNAnexus is represented by:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;project-j47b1k3z8Jqqv001213v312j1:file-47jK67093475061g3v95369p&#39;</span>
+</pre></div>
+</div>
+<p>having multiple locations for a single file within a project is infeasible.
+However, one canonical file can be present in multiple projects at different paths.</p>
+<p>Thus, stor has two subclass implementations of <a class="reference internal" href="#stor.dx.DXPath" title="stor.dx.DXPath"><code class="xref any py py-class docutils literal notranslate"><span class="pre">DXPath</span></code></a>: <a class="reference internal" href="#stor.dx.DXCanonicalPath" title="stor.dx.DXCanonicalPath"><code class="xref any py py-class docutils literal notranslate"><span class="pre">DXCanonicalPath</span></code></a> and
+<a class="reference internal" href="#stor.dx.DXVirtualPath" title="stor.dx.DXVirtualPath"><code class="xref any py py-class docutils literal notranslate"><span class="pre">DXVirtualPath</span></code></a>. As the name suggests, <a class="reference internal" href="#stor.dx.DXCanonicalPath" title="stor.dx.DXCanonicalPath"><code class="xref any py py-class docutils literal notranslate"><span class="pre">DXCanonicalPath</span></code></a> deals with paths like:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Path</span><span class="p">(</span><span class="s1">&#39;dx://project-j47b1k3z8Jqqv001213v312j1:file-47jK67093475061g3v95369p&#39;</span><span class="p">)</span>
+<span class="n">OR</span>
+<span class="n">Path</span><span class="p">(</span><span class="s1">&#39;dx://project-j47b1k3z8Jqqv001213v312j1:/file-47jK67093475061g3v95369p&#39;</span><span class="p">)</span>
+<span class="n">OR</span>
+<span class="n">Path</span><span class="p">(</span><span class="s1">&#39;dx://project-j47b1k3z8Jqqv001213v312j1&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><a class="reference internal" href="#stor.dx.DXVirtualPath" title="stor.dx.DXVirtualPath"><code class="xref any py py-class docutils literal notranslate"><span class="pre">DXVirtualPath</span></code></a> handles paths that have any human readable element in them:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Path</span><span class="p">(</span><span class="s1">&#39;dx://project-j47b1k3z8Jqqv001213v312j1:/path/to/file.txt&#39;</span><span class="p">)</span>
+<span class="n">OR</span>
+<span class="n">Path</span><span class="p">(</span><span class="s1">&#39;dx://myproject:/path/to/file.txt&#39;</span><span class="p">)</span>
+<span class="n">OR</span>
+<span class="n">Path</span><span class="p">(</span><span class="s1">&#39;dx://myproject:path/to/file.txt&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="docutils">
+<dt>You can obtain the <a class="reference internal" href="#stor.dx.DXCanonicalPath" title="stor.dx.DXCanonicalPath"><code class="xref any py py-class docutils literal notranslate"><span class="pre">DXCanonicalPath</span></code></a> from a <a class="reference internal" href="#stor.dx.DXVirtualPath" title="stor.dx.DXVirtualPath"><code class="xref any py py-class docutils literal notranslate"><span class="pre">DXVirtualPath</span></code></a> and vice versa, like so::</dt>
+<dd><div class="first highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">stor</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="s1">&#39;dx://StorTesting:/1.bam&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">canonical_path</span>
+<span class="go">DXCanonicalPath(&quot;dx://project-FJq288j0GPJbFJZX43fV5YP1:/file-FKzjPgQ0FZ3VpBkpKJz4Vb70&quot;)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">stor</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="s1">&#39;dx://StorTesting:1.bam&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">canonical_path</span><span class="o">.</span><span class="n">canonical_path</span>
+<span class="go">DXCanonicalPath(&quot;dx://project-FJq288j0GPJbFJZX43fV5YP1:/file-FKzjPgQ0FZ3VpBkpKJz4Vb70&quot;)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">stor</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="s1">&#39;dx://StorTesting:/1.bam&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">virtual_path</span><span class="o">.</span><span class="n">canonical_path</span>
+<span class="go">DXCanonicalPath(&quot;dx://project-FJq288j0GPJbFJZX43fV5YP1:/file-FKzjPgQ0FZ3VpBkpKJz4Vb70&quot;)</span>
+</pre></div>
+</div>
+<div class="last highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">stor</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="s1">&#39;dx://project-FJq288j0GPJbFJZX43fV5YP1:/file-FKzjPgQ0FZ3VpBkpKJz4Vb70&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">virtual_path</span>
+<span class="go">DXVirtualPath(&quot;dx://StorTesting:/1.bam&quot;)</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+<p>The canonical_path and virtual_path attributes are cached and hence, each call to these
+properties doesn’t invoke a new API request to the DX server.</p>
+</div>
+<div class="section" id="directories-on-dnanexus">
+<h2>Directories on DNAnexus<a class="headerlink" href="#directories-on-dnanexus" title="Permalink to this headline">¶</a></h2>
+<p>DNAnexus has the concept of directories on the platform like posix (unlike
+Swift/S3). These directories can be empty, and also have names with extensions.
+Two folders with the same parent path cannot have the same name, i.e., no
+duplicate folders are allowed (like posix).</p>
+<p>Note here that folders are not actual resources on the DNAnexus platform.
+They are only handled through metadata on the server and as a result, do not
+have a canonical ID of their own. As a result, paths to folders can only be
+<a class="reference internal" href="#stor.dx.DXVirtualPath" title="stor.dx.DXVirtualPath"><code class="xref any py py-class docutils literal notranslate"><span class="pre">DXVirtualPath</span></code></a>. Accessing the <a class="reference internal" href="#stor.dx.DXVirtualPath.canonical_path" title="stor.dx.DXVirtualPath.canonical_path"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">DXVirtualPath.canonical_path</span></code></a> property for folders
+would raise an error.</p>
+<p>The summary of different behaviors for different filesystems is presented here. The
+individual details are explained further below.</p>
+<table border="1" class="colwidths-given docutils" id="id1">
+<caption><span class="caption-text">Filesystem Differences</span><a class="headerlink" href="#id1" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col width="15%" />
+<col width="30%" />
+<col width="25%" />
+<col width="30%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Topic</th>
+<th class="head">Posix</th>
+<th class="head">Swift/S3</th>
+<th class="head">DNAnexus</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>File/ Directory names</td>
+<td>Filenames without extension and dirnames with ext are allowed.
+A dir and a file can have the same name in same path</td>
+<td>Anonymous file / dir names are not allowed on swift paths</td>
+<td>Filenames without extension and dirnames with ext are allowed.
+A dir and a file can have the same name in same path</td>
+</tr>
+<tr class="row-odd"><td>Duplicates</td>
+<td>Not allowed</td>
+<td>Not allowed</td>
+<td>Duplicate filenames are allowed. Duplicate dir names are not allowed</td>
+</tr>
+<tr class="row-even"><td>list</td>
+<td>Recurisvely lists the files and empty directories</td>
+<td>Recurisvely lists the files and empty directory markers.</td>
+<td>Recursively lists the files within DX folder path. No empty
+directories are listed.</td>
+</tr>
+<tr class="row-odd"><td>list with prefix</td>
+<td>Treated as prefix to absolute path</td>
+<td>Treated as prefix to absolute path</td>
+<td>Treated as path to a subfolder to list</td>
+</tr>
+<tr class="row-even"><td>list on filepath</td>
+<td>Returns [filepath]</td>
+<td>Returns [filepath]</td>
+<td>Returns []</td>
+</tr>
+<tr class="row-odd"><td>listdir on non-existent folder</td>
+<td>Returns []</td>
+<td>Returns []</td>
+<td>Raises NotFoundError</td>
+</tr>
+<tr class="row-even"><td>copy, target exists and is file</td>
+<td>Overwrites the file</td>
+<td>Overwrites the file</td>
+<td>Deletes the existing file before copying over</td>
+</tr>
+<tr class="row-odd"><td>copy, target exists and is dir</td>
+<td>Not allowed</td>
+<td>Not possible</td>
+<td>Copied within existing dir</td>
+</tr>
+<tr class="row-even"><td>serverside copy/copytree</td>
+<td>Allowed</td>
+<td>Not allowed</td>
+<td>Allowed</td>
+</tr>
+<tr class="row-odd"><td>copytree, target exists as file</td>
+<td>Not allowed</td>
+<td>Allowed</td>
+<td>Allowed</td>
+</tr>
+<tr class="row-even"><td>copytree, target exists as dir</td>
+<td>Merges the two directories</td>
+<td>Overwrites the dir</td>
+<td>Copies inside existing directory.
+If root folder is moved, project name is used while copying if needed.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="files-on-dnanexus">
+<h2>Files on DNAnexus<a class="headerlink" href="#files-on-dnanexus" title="Permalink to this headline">¶</a></h2>
+<p>Files stored on the DX platform are immutable. This is because the files are
+internally stored in AWS while the metadata handling is taken care of by the
+platform. Hence, once a file is uploaded, it cannot be modified.</p>
+<p>When one file is copied to another project, only additional metadata is produced,
+while the underlying file on AWS remains the same. This is essential. The same
+file with the same canonical ID will appear in both projects, and can have
+different folder paths. Deleting a file from one project is possible, which
+deletes the metadata and leaves the file untouched in other projects.</p>
+</div>
+<div class="section" id="dxpath-on-stor">
+<h2>DXPath on stor<a class="headerlink" href="#dxpath-on-stor" title="Permalink to this headline">¶</a></h2>
+<p>Project is always required for DNAnexus instances:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; Path(&#39;dx://path/to/file&#39;)
+Traceback (most recent call last):
+...
+&lt;exception&gt;
+</pre></div>
+</div>
+<p>but projects are normalized:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">Path</span><span class="p">(</span><span class="s1">&#39;dx://myproject&#39;</span><span class="p">)</span>
+<span class="go">DXVirtualPath(&#39;dx://myproject:&#39;)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="duplicate-names-on-dnanexus">
+<h2>Duplicate names on DNAnexus<a class="headerlink" href="#duplicate-names-on-dnanexus" title="Permalink to this headline">¶</a></h2>
+<p>A single virtual path can refer to multiple files (and even a folder) simultaneously!
+Currently, stor will error if a specific virtual path resolves to multiple files (use
+the dx-tool in these cases), but you can always use a canonical path.:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ dx upload myfile.txt -o MyProject:/myfile.txt
+$ dx upload anotherfile.txt -o MyProject:/myfile.txt
+$ stor cat dx://MyProject:/myfile.txt
+# MultipleObjectsSameNameError: Multiple objects found at path (dx://StorTesting:/1.bam). Try using a canonical ID instead
+</pre></div>
+</div>
+<p>When a folder has the same name as a file, stor uses the method you call to check for
+a folder or a file (i.e., <a class="reference internal" href="#stor.dx.DXPath.listdir" title="stor.dx.DXPath.listdir"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">DXPath.listdir</span></code></a> will assume folder, <a class="reference internal" href="#stor.dx.DXPath.stat" title="stor.dx.DXPath.stat"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">DXPath.stat</span></code></a> will assume file).</p>
+</div>
+<div class="section" id="module-stor.dx">
+<span id="dxpath"></span><h2>DXPath<a class="headerlink" href="#module-stor.dx" title="Permalink to this headline">¶</a></h2>
+<dl class="exception">
+<dt id="stor.dx.DNAnexusError">
+<em class="property">exception </em><code class="descclassname">stor.dx.</code><code class="descname">DNAnexusError</code><span class="sig-paren">(</span><em>message</em>, <em>caught_exception=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/stor/dx.html#DNAnexusError"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#stor.dx.DNAnexusError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Base class for all remote errors thrown by this DX module</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="stor.dx.DXCanonicalPath">
+<em class="property">class </em><code class="descclassname">stor.dx.</code><code class="descname">DXCanonicalPath</code><span class="sig-paren">(</span><em>pth</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/stor/dx.html#DXCanonicalPath"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#stor.dx.DXCanonicalPath" title="Permalink to this definition">¶</a></dt>
+<dd><p>Represents fully canonicalized DNAnexus paths:
+‘dx://project-{dxID}:/file-{dxID}’ or ‘dx://project-{dxID}:’</p>
+<dl class="attribute">
+<dt id="stor.dx.DXCanonicalPath.canonical_path">
+<code class="descname">canonical_path</code><a class="headerlink" href="#stor.dx.DXCanonicalPath.canonical_path" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get DXCanonicalPath instance for path</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="stor.dx.DXCanonicalPath.canonical_project">
+<code class="descname">canonical_project</code><a class="headerlink" href="#stor.dx.DXCanonicalPath.canonical_project" title="Permalink to this definition">¶</a></dt>
+<dd><p>The canonical dxid for the project</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="stor.dx.DXCanonicalPath.canonical_resource">
+<code class="descname">canonical_resource</code><a class="headerlink" href="#stor.dx.DXCanonicalPath.canonical_resource" title="Permalink to this definition">¶</a></dt>
+<dd><p>The canonical dxID of the file resource</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="stor.dx.DXCanonicalPath.normpath">
+<code class="descname">normpath</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/stor/dx.html#DXCanonicalPath.normpath"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#stor.dx.DXCanonicalPath.normpath" title="Permalink to this definition">¶</a></dt>
+<dd><p>Normalize path following linux conventions (keeps drive prefix)</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="stor.dx.DXCanonicalPath.splitpath">
+<code class="descname">splitpath</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/stor/dx.html#DXCanonicalPath.splitpath"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#stor.dx.DXCanonicalPath.splitpath" title="Permalink to this definition">¶</a></dt>
+<dd><p>Wrapper around base splitpath function which calls splitpath on the normpath of self</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="stor.dx.DXCanonicalPath.virtual_path">
+<code class="descname">virtual_path</code><a class="headerlink" href="#stor.dx.DXCanonicalPath.virtual_path" title="Permalink to this definition">¶</a></dt>
+<dd><p>The DXVirtualPath instance equivalent to the canonical path within the specified project</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="stor.dx.DXCanonicalPath.virtual_project">
+<code class="descname">virtual_project</code><a class="headerlink" href="#stor.dx.DXCanonicalPath.virtual_project" title="Permalink to this definition">¶</a></dt>
+<dd><p>The virtual (human-readable) name of the project associated with this path</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="stor.dx.DXCanonicalPath.virtual_resource">
+<code class="descname">virtual_resource</code><a class="headerlink" href="#stor.dx.DXCanonicalPath.virtual_resource" title="Permalink to this definition">¶</a></dt>
+<dd><p>The virtual (human-readable) path of the resource associated with this path</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="stor.dx.DXPath">
+<em class="property">class </em><code class="descclassname">stor.dx.</code><code class="descname">DXPath</code><span class="sig-paren">(</span><em>pth</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/stor/dx.html#DXPath"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#stor.dx.DXPath" title="Permalink to this definition">¶</a></dt>
+<dd><p>Provides the ability to manipulate and access resources on DNAnexus
+servers with stor interfaces.</p>
+<dl class="method">
+<dt id="stor.dx.DXPath.abspath">
+<code class="descname">abspath</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#stor.dx.DXPath.abspath" title="Permalink to this definition">¶</a></dt>
+<dd><p>No-op for ‘abspath’</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="stor.dx.DXPath.clear_cached_properties">
+<code class="descname">clear_cached_properties</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/stor/dx.html#DXPath.clear_cached_properties"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#stor.dx.DXPath.clear_cached_properties" title="Permalink to this definition">¶</a></dt>
+<dd><p>Clears all cached properties in DXPath objects.</p>
+<p>The canonical and virtual forms of DXPath objects are cached to not hit
+the server for every transformation call. However, after copy/remove/rename,
+the cached information is outdated and needs to be cleared.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="stor.dx.DXPath.copy">
+<code class="descname">copy</code><span class="sig-paren">(</span><em>dest</em>, <em>raise_if_same_project=False</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/stor/dx.html#DXPath.copy"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#stor.dx.DXPath.copy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Copies data object to destination path.</p>
+<p>If dest already exists as a directory on the DX platform, the file is copied
+underneath dest directory with original name.</p>
+<p>If the target destination already exists as a file, it is first deleted before
+the copy is attempted.</p>
+<p>For example, assume the following file hierarchy:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">dxProject</span><span class="o">/</span>
+<span class="o">-</span> <span class="n">a</span><span class="o">/</span>
+<span class="o">-</span> <span class="o">-</span> <span class="mf">1.</span><span class="n">txt</span>
+
+<span class="n">anotherDxProject</span><span class="o">/</span>
+</pre></div>
+</div>
+<p>Doing a copy of <code class="docutils literal notranslate"><span class="pre">1.txt</span></code> to a new destination of <code class="docutils literal notranslate"><span class="pre">b.txt</span></code> is
+performed with:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Path</span><span class="p">(</span><span class="s1">&#39;dx://dxProject:/a/1.txt&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="s1">&#39;dx://anotherDxProject/b.txt&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The end result for anotherDxProject looks like:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">anotherDxProject</span><span class="o">/</span>
+<span class="o">-</span> <span class="n">b</span><span class="o">.</span><span class="n">txt</span>
+</pre></div>
+</div>
+<p>And, if the destination already exists as a directory, i.e. we have:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">dxProject</span><span class="o">/</span>
+<span class="o">-</span> <span class="n">a</span><span class="o">/</span>
+<span class="o">-</span> <span class="o">-</span> <span class="mf">1.</span><span class="n">txt</span>
+
+<span class="n">anotherDxProject</span><span class="o">/</span>
+<span class="o">-</span> <span class="n">b</span><span class="o">.</span><span class="n">txt</span><span class="o">/</span>
+</pre></div>
+</div>
+<p>Performing copy with following command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Path</span><span class="p">(</span><span class="s1">&#39;dx://dxProject:/a/1.txt&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="s1">&#39;dx://anotherDxProject/b.txt&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Will yield the resulting structure to be:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">anotherDxProject</span><span class="o">/</span>
+<span class="o">-</span> <span class="n">b</span><span class="o">.</span><span class="n">txt</span><span class="o">/</span>
+<span class="o">-</span> <span class="o">-</span> <span class="mf">1.</span><span class="n">txt</span>
+</pre></div>
+</div>
+<p>If the source file and destination belong to the same project, the files are
+moved instead of copied, if the raise_if_same_project flag is False; because
+the same underlying file cannot appear in two locations in the same project.</p>
+<p>If the final destination for the file already is an existing file,
+that file is deleted before the file is copied.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>dest</strong> (<em>Path|str</em>) – The destination file or directory.</li>
+<li><strong>raise_if_same_project</strong> (<em>bool</em><em>, </em><em>default False</em>) – Controls moving file within project
+instead of cloning. If True, raises an error to prevent this move.
+Only takes effect when both source and destination are
+within the same DX Project</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><ul class="first last simple">
+<li><a class="reference internal" href="#stor.dx.DNAnexusError" title="stor.dx.DNAnexusError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">DNAnexusError</span></code></a> – When copying within same project with raise_if_same_project=False</li>
+<li><code class="xref py py-exc docutils literal notranslate"><span class="pre">NotFoundError</span></code> – When the source file path doesn’t exist</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="stor.dx.DXPath.copytree">
+<code class="descname">copytree</code><span class="sig-paren">(</span><em>dest</em>, <em>raise_if_same_project=False</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/stor/dx.html#DXPath.copytree"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#stor.dx.DXPath.copytree" title="Permalink to this definition">¶</a></dt>
+<dd><p>Copies a source directory to a destination directory.
+This is not an atomic operation.</p>
+<p>If the destination path already exists as a directory, the source tree
+including the root folder is copied over as a subfolder of the destination.</p>
+<p>If the source and destination directories belong to the same project,
+the tree is moved instead of copied. Also, in such cases, the root folder
+of the project cannot be the source path. Please listdir the root folder
+and copy/copytree individual items if needed.</p>
+<p>For example, assume the following file hierarchy:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">project1</span><span class="o">/</span>
+<span class="o">-</span> <span class="n">b</span><span class="o">/</span>
+<span class="o">-</span> <span class="o">-</span> <span class="mf">1.</span><span class="n">txt</span>
+
+<span class="n">project2</span><span class="o">/</span>
+</pre></div>
+</div>
+<p>Doing a copytree from <code class="docutils literal notranslate"><span class="pre">project1:/b/</span></code> to a new dx destination of
+<code class="docutils literal notranslate"><span class="pre">project2:/c</span></code> is performed with:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Path</span><span class="p">(</span><span class="s1">&#39;dx://project1:/b&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">copytree</span><span class="p">(</span><span class="s1">&#39;dx://project2:/c&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The end result for project2 looks like:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">project2</span><span class="o">/</span>
+<span class="o">-</span> <span class="n">c</span><span class="o">/</span>
+<span class="o">-</span> <span class="o">-</span> <span class="mf">1.</span><span class="n">txt</span>
+</pre></div>
+</div>
+<p>If the destination path directory already exists, the folder is copied
+as a subfolder of the destination. If this new destination also exists,
+a TargetExistsError is raised.</p>
+<p>If the source is a root folder, and is cloned to an existing destination directory
+or if the destination is also a root folder, the tree is moved under project name.</p>
+<p>Refer to <code class="docutils literal notranslate"><span class="pre">dx</span></code> docs for detailed information.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>dest</strong> (<em>Path|str</em>) – The directory to copy to. Must not exist if
+its a posix directory</li>
+<li><strong>raise_if_same_project</strong> (<em>bool</em><em>, </em><em>default False</em>) – Allows moving files within project
+instead of cloning. If True, raises an error to prevent moving the directory.
+Only takes effect when both source and destination directory are
+within the same DX Project</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><ul class="first last simple">
+<li><a class="reference internal" href="#stor.dx.DNAnexusError" title="stor.dx.DNAnexusError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">DNAnexusError</span></code></a> – Attempt to clone within same project and raise_if_same_project=True</li>
+<li><code class="xref py py-exc docutils literal notranslate"><span class="pre">TargetExistsError</span></code> – All possible destinations for source directory already exist</li>
+<li><code class="xref py py-exc docutils literal notranslate"><span class="pre">NotFoundError</span></code> – source directory path doesn’t exist</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="stor.dx.DXPath.dirname">
+<code class="descname">dirname</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/stor/dx.html#DXPath.dirname"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#stor.dx.DXPath.dirname" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns directory name of path. Returns self if path is a project.</p>
+<p>To avoid making API calls, canonical paths will return the project ID</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="stor.dx.DXPath.download">
+<code class="descname">download</code><span class="sig-paren">(</span><em>**kwds</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/stor/dx.html#DXPath.download"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#stor.dx.DXPath.download" title="Permalink to this definition">¶</a></dt>
+<dd><p>Download a directory.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>dest</strong> (<a class="reference internal" href="main_interface.html#stor.base.Path" title="stor.base.Path"><em>Path</em></a>) – The output directory</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><code class="xref py py-exc docutils literal notranslate"><span class="pre">NotFoundError</span></code> – When source or dest path is not a directory</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="stor.dx.DXPath.download_object">
+<code class="descname">download_object</code><span class="sig-paren">(</span><em>**kwds</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/stor/dx.html#DXPath.download_object"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#stor.dx.DXPath.download_object" title="Permalink to this definition">¶</a></dt>
+<dd><p>Download a single path or object to file.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>dest</strong> (<a class="reference internal" href="main_interface.html#stor.base.Path" title="stor.base.Path"><em>Path</em></a>) – The output file</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><code class="xref py py-exc docutils literal notranslate"><span class="pre">NotFoundError</span></code> – When source path is not an existing file</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="stor.dx.DXPath.download_objects">
+<code class="descname">download_objects</code><span class="sig-paren">(</span><em>dest</em>, <em>objects</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/stor/dx.html#DXPath.download_objects"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#stor.dx.DXPath.download_objects" title="Permalink to this definition">¶</a></dt>
+<dd><p>Downloads a list of objects to a destination folder.</p>
+<p>Note that this method takes a list of complete relative or absolute
+OBSPaths to objects (in contrast to taking a prefix). If any object
+does not exist, the call will fail with partially downloaded objects
+residing in the destination path.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>dest</strong> (<em>str</em>) – The destination folder to download to. The directory
+will be created if it doesnt exist.</li>
+<li><strong>objects</strong> (<em>List</em><em>[</em><em>str|PosixPath|SwiftPath</em><em>]</em>) – The list of objects to
+download. The objects can be paths relative to the download path
+or absolute obs paths. Any absolute obs path must be
+children of the download path</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><dl class="docutils">
+<dt>A mapping of all requested <code class="docutils literal notranslate"><span class="pre">objs</span></code> to their location on</dt>
+<dd><p class="first last">disk</p>
+</dd>
+</dl>
+</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference external" href="https://python.readthedocs.io/en/v2.7.2/library/stdtypes.html#dict" title="(in Python v2.7)">dict</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Examples</p>
+<p>To download a objects to a <code class="docutils literal notranslate"><span class="pre">dest/folder</span></code> destination:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">stor</span> <span class="k">import</span> <span class="n">Path</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s1">&#39;dx://project:/dir/&#39;</span><span class="p">)</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">download_objects</span><span class="p">(</span><span class="s1">&#39;dest/folder&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;subdir/f1.txt&#39;</span><span class="p">,</span>
+                                             <span class="s1">&#39;subdir/f2.txt&#39;</span><span class="p">])</span>
+<span class="nb">print</span> <span class="n">results</span>
+<span class="p">{</span>
+    <span class="s1">&#39;subdir/f1.txt&#39;</span><span class="p">:</span> <span class="s1">&#39;dest/folder/subdir/f1.txt&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;subdir/f2.txt&#39;</span><span class="p">:</span> <span class="s1">&#39;dest/folder/subdir/f2.txt&#39;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>To download full obs paths relative to a download path:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">stor</span> <span class="k">import</span> <span class="n">Path</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s1">&#39;dx://project:/dir/&#39;</span><span class="p">)</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">download_objects</span><span class="p">(</span><span class="s1">&#39;dest/folder&#39;</span><span class="p">,</span> <span class="p">[</span>
+    <span class="s1">&#39;dx://project:/dir/subdir/f1.txt&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;dx://project:/dir/subdir/f2.txt&#39;</span>
+<span class="p">])</span>
+<span class="nb">print</span> <span class="n">results</span>
+<span class="p">{</span>
+    <span class="s1">&#39;dx://project:/dir/subdir/f1.txt&#39;</span><span class="p">:</span> <span class="s1">&#39;dest/folder/subdir/f1.txt&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;dx://project:/dir/subdir/f2.txt&#39;</span><span class="p">:</span> <span class="s1">&#39;dest/folder/subdir/f2.txt&#39;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="stor.dx.DXPath.exists">
+<code class="descname">exists</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/stor/dx.html#DXPath.exists"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#stor.dx.DXPath.exists" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks existence of the path.</p>
+<p>Returns True if the path exists, False otherwise.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">True if the path exists, False otherwise.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">bool</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="stor.dx.DXPath.expanduser">
+<code class="descname">expanduser</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#stor.dx.DXPath.expanduser" title="Permalink to this definition">¶</a></dt>
+<dd><p>No-op for ‘expanduser’</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="stor.dx.DXPath.getsize">
+<code class="descname">getsize</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/stor/dx.html#DXPath.getsize"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#stor.dx.DXPath.getsize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns size, in bytes of path.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="stor.dx.DXPath.glob">
+<code class="descname">glob</code><span class="sig-paren">(</span><em>pattern</em>, <em>condition=None</em>, <em>canonicalize=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/stor/dx.html#DXPath.glob"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#stor.dx.DXPath.glob" title="Permalink to this definition">¶</a></dt>
+<dd><p>Glob for pattern relative to this directory.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="stor.dx.DXPath.isdir">
+<code class="descname">isdir</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/stor/dx.html#DXPath.isdir"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#stor.dx.DXPath.isdir" title="Permalink to this definition">¶</a></dt>
+<dd><p>Determine if path is directory-like
+(i.e., it’s a project, or it’s a folder that can be listed)</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">True if path is an existing folder path or project</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">bool</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="stor.dx.DXPath.isfile">
+<code class="descname">isfile</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/stor/dx.html#DXPath.isfile"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#stor.dx.DXPath.isfile" title="Permalink to this definition">¶</a></dt>
+<dd><p>Determine an object exists at the specified path</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">True if path points to an existing file</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">bool</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="stor.dx.DXPath.joinpath">
+<code class="descname">joinpath</code><span class="sig-paren">(</span><em>*others</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/stor/dx.html#DXPath.joinpath"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#stor.dx.DXPath.joinpath" title="Permalink to this definition">¶</a></dt>
+<dd><p>Wrapper around base joinpath function which converts the first part to normpath
+before joining with others.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="stor.dx.DXPath.list">
+<code class="descname">list</code><span class="sig-paren">(</span><em>canonicalize=False</em>, <em>starts_with=None</em>, <em>limit=None</em>, <em>classname=None</em>, <em>condition=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/stor/dx.html#DXPath.list"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#stor.dx.DXPath.list" title="Permalink to this definition">¶</a></dt>
+<dd><p>List contents using the resource of the path as a prefix. This will only
+list the file resources (and not empty directories like other OBS).</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">Prefer <a class="reference internal" href="#stor.dx.DXPath.list_iter" title="stor.dx.DXPath.list_iter"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">list_iter()</span></code></a> to this method in production code. If there are many files (i.e.,
+more than 1-2K) to list, this method may take a long time to return and use a lot of
+memory to construct all of the objects.</p>
+</div>
+<p class="rubric">Examples</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">Path</span><span class="p">(</span><span class="s1">&#39;dx://MyProject:/my/path/&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">list</span><span class="p">(</span><span class="n">canonicalize</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="go">[Path(&#39;dx://MyProject:/my/path/to/file.txt, ...]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Path</span><span class="p">(</span><span class="s1">&#39;dx://MyProject:/my/path/&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">list</span><span class="p">(</span><span class="n">canonicalize</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="go">[Path(&#39;dx://project-123:file-123&#39;), ...]</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>canonicalize</strong> (<em>bool</em><em>, </em><em>default False</em>) – if True, return canonical paths</li>
+<li><strong>starts_with</strong> (<em>str</em>) – Allows for an additional search path to
+be appended to the resource of the dx path. Note that this
+resource path is treated as a directory</li>
+<li><strong>limit</strong> (<em>int</em>) – Limit the amount of results returned</li>
+<li><strong>classname</strong> (<em>str</em>) – Restricting class : One of ‘record’, ‘file’, ‘gtable,
+‘applet’, ‘workflow’</li>
+<li><strong>condition</strong> (<em>function</em><em>(</em><em>results</em><em>) </em><em>-&gt; bool</em>) – The method will only return
+when the results matches the condition.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Iterates over listed files that match an optional pattern.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">List[<a class="reference internal" href="#stor.dx.DXPath" title="stor.dx.DXPath">DXPath</a>]</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="stor.dx.DXPath.list_iter">
+<code class="descname">list_iter</code><span class="sig-paren">(</span><em>canonicalize=False</em>, <em>starts_with=None</em>, <em>limit=None</em>, <em>classname=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/stor/dx.html#DXPath.list_iter"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#stor.dx.DXPath.list_iter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Iterable that yields objects under prefix (especially useful when a folder may have
+many small files)</p>
+<p>Note that this is a wrapper function to walkfiles.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>canonicalize</strong> (<em>bool</em><em>, </em><em>default False</em>) – if True, return canonical paths</li>
+<li><strong>starts_with</strong> (<em>str</em>) – Allows for an additional search path to
+be appended to the resource of the dx path. Note that this
+resource path is treated as a directory</li>
+<li><strong>limit</strong> (<em>int</em>) – Limit the amount of results returned</li>
+<li><strong>classname</strong> (<em>str</em>) – Restricting class : One of ‘record’, ‘file’, ‘gtable,
+‘applet’, ‘workflow’</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Iterates over listed files that match an optional pattern.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">Iterable[<a class="reference internal" href="#stor.dx.DXPath" title="stor.dx.DXPath">DXPath</a>]</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="stor.dx.DXPath.listdir">
+<code class="descname">listdir</code><span class="sig-paren">(</span><em>only='all'</em>, <em>canonicalize=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/stor/dx.html#DXPath.listdir"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#stor.dx.DXPath.listdir" title="Permalink to this definition">¶</a></dt>
+<dd><p>List the path as a dir, returning top-level directories and files.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>canonicalize</strong> (<em>bool</em><em>, </em><em>default False</em>) – if True, return canonical paths</li>
+<li><strong>only</strong> (<em>str</em>) – “objects” for only objects, “folders” for only folders,
+“all” for both</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Iterates over listed files directly within the resource</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">List[<a class="reference internal" href="#stor.dx.DXPath" title="stor.dx.DXPath">DXPath</a>]</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first last"><code class="xref py py-exc docutils literal notranslate"><span class="pre">NotFoundError</span></code> – When resource folder is not present on DX platform</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="stor.dx.DXPath.listdir_iter">
+<code class="descname">listdir_iter</code><span class="sig-paren">(</span><em>canonicalize=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/stor/dx.html#DXPath.listdir_iter"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#stor.dx.DXPath.listdir_iter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Iterate the path as a dir, returning top-level directories and files.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>canonicalize</strong> (<em>bool</em><em>, </em><em>default False</em>) – if True, return canonical paths</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Iterates over listed files directly within the resource</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">Iterable[<a class="reference internal" href="#stor.dx.DXPath" title="stor.dx.DXPath">DXPath</a>]</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="stor.dx.DXPath.makedirs_p">
+<code class="descname">makedirs_p</code><span class="sig-paren">(</span><em>mode=511</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/stor/dx.html#DXPath.makedirs_p"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#stor.dx.DXPath.makedirs_p" title="Permalink to this definition">¶</a></dt>
+<dd><p>Make directories, including parents on DX from DX folder paths.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>mode</strong> – unused, present for compatibility
+(access permissions are managed at project level)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="stor.dx.DXPath.name">
+<code class="descname">name</code><a class="headerlink" href="#stor.dx.DXPath.name" title="Permalink to this definition">¶</a></dt>
+<dd><p>File or folder name of the path. Empty string for projects or folders
+with trailing slash.</p>
+<p>Makes no API calls to server, canonical paths are treated normally, and the basename
+of the path is returned.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="stor.dx.DXPath.normpath">
+<code class="descname">normpath</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/stor/dx.html#DXPath.normpath"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#stor.dx.DXPath.normpath" title="Permalink to this definition">¶</a></dt>
+<dd><p>Normalize path following linux conventions (keeps drive prefix)</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="stor.dx.DXPath.project">
+<code class="descname">project</code><a class="headerlink" href="#stor.dx.DXPath.project" title="Permalink to this definition">¶</a></dt>
+<dd><p>The project name from the path or None</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="stor.dx.DXPath.read_object">
+<code class="descname">read_object</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/stor/dx.html#DXPath.read_object"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#stor.dx.DXPath.read_object" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reads an individual object from DX.
+Note dxpy for Py3 automatically decodes the DXFile.read using utf-8.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">the raw bytes from the object on DX.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">bytes</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="stor.dx.DXPath.realpath">
+<code class="descname">realpath</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#stor.dx.DXPath.realpath" title="Permalink to this definition">¶</a></dt>
+<dd><p>No-op for ‘realpath’</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="stor.dx.DXPath.remove">
+<code class="descname">remove</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/stor/dx.html#DXPath.remove"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#stor.dx.DXPath.remove" title="Permalink to this definition">¶</a></dt>
+<dd><p>Removes a single object from DX platform</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Raises:</th><td class="field-body"><code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> – The path is invalid.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="stor.dx.DXPath.resource">
+<code class="descname">resource</code><a class="headerlink" href="#stor.dx.DXPath.resource" title="Permalink to this definition">¶</a></dt>
+<dd><p>The virtual or canonical path to the file within the project (as a POSIXPath).</p>
+<p class="rubric">Examples</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">Path</span><span class="p">(</span><span class="s1">&#39;dx://project:dir/file&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">resource</span>
+<span class="go">PosixPath(&#39;dir/file&#39;)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Path</span><span class="p">(</span><span class="s1">&#39;dx://project-123:file-456&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">resource</span>
+<span class="go">PosixPath(&#39;file-456&#39;)</span>
+</pre></div>
+</div>
+<p>NOTE: to avoid making API requests, this operation only uses the local string</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="stor.dx.DXPath.rmtree">
+<code class="descname">rmtree</code><span class="sig-paren">(</span><em>**kwds</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/stor/dx.html#DXPath.rmtree"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#stor.dx.DXPath.rmtree" title="Permalink to this definition">¶</a></dt>
+<dd><p>Removes a resource and all of its contents.
+The path should point to a project or directory.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Raises:</th><td class="field-body"><code class="xref py py-exc docutils literal notranslate"><span class="pre">NotFoundError</span></code> – The path points to a nonexistent directory</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="stor.dx.DXPath.stat">
+<code class="descname">stat</code><span class="sig-paren">(</span><em>**kwds</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/stor/dx.html#DXPath.stat"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#stor.dx.DXPath.stat" title="Permalink to this definition">¶</a></dt>
+<dd><p>Performs a stat on the path.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Raises:</th><td class="field-body"><ul class="first last simple">
+<li><a class="reference internal" href="#stor.dx.MultipleObjectsSameNameError" title="stor.dx.MultipleObjectsSameNameError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">MultipleObjectsSameNameError</span></code></a> – If project or resource is not unique</li>
+<li><code class="xref py py-exc docutils literal notranslate"><span class="pre">NotFoundError</span></code> – When the project or resource cannot be found</li>
+<li><code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> – If path is folder path</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="stor.dx.DXPath.temp_url">
+<code class="descname">temp_url</code><span class="sig-paren">(</span><em>lifetime=300</em>, <em>filename=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/stor/dx.html#DXPath.temp_url"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#stor.dx.DXPath.temp_url" title="Permalink to this definition">¶</a></dt>
+<dd><p>Obtains a temporary URL to a DNAnexus data-object.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>lifetime</strong> (<em>int</em>) – The time (in seconds) the temporary
+URL will be valid</li>
+<li><strong>filename</strong> (<em>str</em><em>, </em><em>optional</em>) – A urlencoded filename to use for
+attachment, otherwise defaults to object name</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><ul class="first last simple">
+<li><code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> – The path points to a project</li>
+<li><code class="xref py py-exc docutils literal notranslate"><span class="pre">NotFoundError</span></code> – The path could not be resolved to a file</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="stor.dx.DXPath.upload">
+<code class="descname">upload</code><span class="sig-paren">(</span><em>to_upload</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/stor/dx.html#DXPath.upload"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#stor.dx.DXPath.upload" title="Permalink to this definition">¶</a></dt>
+<dd><p>Upload a list of files and directories to a directory.</p>
+<p>This is not a batch level operation.
+If some file errors, the files uploaded before will remain present.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>to_upload</strong> (<em>List</em><em>[</em><em>Union</em><em>[</em><em>str</em><em>, </em><em>OBSUploadObject</em><em>]</em><em>]</em>) – A list of posix file names,
+directory names, or OBSUploadObject objects to upload.</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><ul class="first last simple">
+<li><code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> – When source path is not a directory</li>
+<li><code class="xref py py-exc docutils literal notranslate"><span class="pre">TargetExistsError</span></code> – When destination directory already exists</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="stor.dx.DXPath.walkfiles">
+<code class="descname">walkfiles</code><span class="sig-paren">(</span><em>pattern=None</em>, <em>canonicalize=False</em>, <em>recurse=True</em>, <em>starts_with=None</em>, <em>limit=None</em>, <em>classname=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/stor/dx.html#DXPath.walkfiles"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#stor.dx.DXPath.walkfiles" title="Permalink to this definition">¶</a></dt>
+<dd><p>Iterates over listed files that match an optional pattern.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>pattern</strong> (<em>str</em>) – glob pattern to match the filenames against.</li>
+<li><strong>canonicalize</strong> (<em>bool</em><em>, </em><em>default False</em>) – if True, return canonical paths</li>
+<li><strong>recurse</strong> (<em>bool</em><em>, </em><em>default True</em>) – if True, look in subfolders of folder as well</li>
+<li><strong>starts_with</strong> (<em>str</em>) – Allows for an additional search path to
+be appended to the resource of the dx path. Note that this
+resource path is treated as a directory</li>
+<li><strong>limit</strong> (<em>int</em>) – Limit the amount of results returned</li>
+<li><strong>classname</strong> (<em>str</em>) – Restricting class : One of ‘record’, ‘file’, ‘gtable,
+‘applet’, ‘workflow’</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Iterates over listed files that match an optional pattern.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">Iter[<a class="reference internal" href="#stor.dx.DXPath" title="stor.dx.DXPath">DXPath</a>]</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="stor.dx.DXPath.write_object">
+<code class="descname">write_object</code><span class="sig-paren">(</span><em>content</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/stor/dx.html#DXPath.write_object"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#stor.dx.DXPath.write_object" title="Permalink to this definition">¶</a></dt>
+<dd><p>Writes an individual object to DX.</p>
+<p>Note that this method writes the provided content to a temporary
+file before uploading. This allows us to reuse code from DXPath’s
+uploader (multi part object support, etc.).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>content</strong> (<em>bytes</em>) – raw bytes to write to OBS</li>
+<li><strong>**kwargs</strong> – Keyword arguments to pass to
+<a class="reference internal" href="#stor.dx.DXPath.upload" title="stor.dx.DXPath.upload"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">DXPath.upload</span></code></a></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="stor.dx.DXVirtualPath">
+<em class="property">class </em><code class="descclassname">stor.dx.</code><code class="descname">DXVirtualPath</code><span class="sig-paren">(</span><em>pth</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/stor/dx.html#DXVirtualPath"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#stor.dx.DXVirtualPath" title="Permalink to this definition">¶</a></dt>
+<dd><p>Class Handler for DXPath of form ‘dx://MyProject:/a/b/c’ or ‘dx://project-{uuid}:/b/c’</p>
+<dl class="attribute">
+<dt id="stor.dx.DXVirtualPath.canonical_path">
+<code class="descname">canonical_path</code><a class="headerlink" href="#stor.dx.DXVirtualPath.canonical_path" title="Permalink to this definition">¶</a></dt>
+<dd><p>The unique file or project that matches the given path</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="stor.dx.DXVirtualPath.canonical_project">
+<code class="descname">canonical_project</code><a class="headerlink" href="#stor.dx.DXVirtualPath.canonical_project" title="Permalink to this definition">¶</a></dt>
+<dd><p>The dxid of the unique project for the given project name. Only resolves
+project user has access to.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Raises:</th><td class="field-body"><ul class="first last simple">
+<li><a class="reference internal" href="#stor.dx.MultipleObjectsSameNameError" title="stor.dx.MultipleObjectsSameNameError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">MultipleObjectsSameNameError</span></code></a> – If project name is not unique on DX platform</li>
+<li><code class="xref py py-exc docutils literal notranslate"><span class="pre">NotFoundError</span></code> – If project name doesn’t exist on DNAnexus</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="stor.dx.DXVirtualPath.canonical_resource">
+<code class="descname">canonical_resource</code><a class="headerlink" href="#stor.dx.DXVirtualPath.canonical_resource" title="Permalink to this definition">¶</a></dt>
+<dd><p>The dxid of the file at this path</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Raises:</th><td class="field-body"><ul class="first last simple">
+<li><a class="reference internal" href="#stor.dx.MultipleObjectsSameNameError" title="stor.dx.MultipleObjectsSameNameError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">MultipleObjectsSameNameError</span></code></a> – if filename is not unique</li>
+<li><code class="xref py py-exc docutils literal notranslate"><span class="pre">NotFoundError</span></code> – if resource is not found on DX platform</li>
+<li><code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> – if path looks like a folder path (i.e., ends with trailing slash)</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="stor.dx.DXVirtualPath.normpath">
+<code class="descname">normpath</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/stor/dx.html#DXVirtualPath.normpath"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#stor.dx.DXVirtualPath.normpath" title="Permalink to this definition">¶</a></dt>
+<dd><p>Normalize path following linux conventions (keeps drive prefix)</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="stor.dx.DXVirtualPath.splitpath">
+<code class="descname">splitpath</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/stor/dx.html#DXVirtualPath.splitpath"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#stor.dx.DXVirtualPath.splitpath" title="Permalink to this definition">¶</a></dt>
+<dd><p>Wrapper around base splitpath function which calls splitpath on the normpath of self</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="stor.dx.DXVirtualPath.virtual_path">
+<code class="descname">virtual_path</code><a class="headerlink" href="#stor.dx.DXVirtualPath.virtual_path" title="Permalink to this definition">¶</a></dt>
+<dd><p>Path as DXVirtualPath</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="stor.dx.DXVirtualPath.virtual_project">
+<code class="descname">virtual_project</code><a class="headerlink" href="#stor.dx.DXVirtualPath.virtual_project" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the virtual name of the project associated with the DXVirtualPath</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="stor.dx.DXVirtualPath.virtual_resource">
+<code class="descname">virtual_resource</code><a class="headerlink" href="#stor.dx.DXVirtualPath.virtual_resource" title="Permalink to this definition">¶</a></dt>
+<dd><p>Human-readable path to the object in its DNAnexus Project (as PosixPath)</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="exception">
+<dt id="stor.dx.InconsistentUploadDownloadError">
+<em class="property">exception </em><code class="descclassname">stor.dx.</code><code class="descname">InconsistentUploadDownloadError</code><span class="sig-paren">(</span><em>message</em>, <em>caught_exception=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/stor/dx.html#InconsistentUploadDownloadError"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#stor.dx.InconsistentUploadDownloadError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Thrown during checksum mismatch or part length mismatch..</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="stor.dx.MultipleObjectsSameNameError">
+<em class="property">exception </em><code class="descclassname">stor.dx.</code><code class="descname">MultipleObjectsSameNameError</code><span class="sig-paren">(</span><em>message</em>, <em>caught_exception=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/stor/dx.html#MultipleObjectsSameNameError"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#stor.dx.MultipleObjectsSameNameError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Thrown when multiple objects exist with the same name</p>
+<p>Currently, we throw this when trying to get the canonical project
+from virtual path and two or more projects were found with same name</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="stor.dx.ProjectNotFoundError">
+<em class="property">exception </em><code class="descclassname">stor.dx.</code><code class="descname">ProjectNotFoundError</code><span class="sig-paren">(</span><em>message</em>, <em>caught_exception=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/stor/dx.html#ProjectNotFoundError"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#stor.dx.ProjectNotFoundError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Thrown when no project exists with the given name</p>
+<p>Currently, we throw this when trying to get the canonical project
+from virtual path and no project was found with same name</p>
+</dd></dl>
+
+</div>
+<div class="section" id="copy-and-copytree-by-example">
+<h2>Copy and copytree by example<a class="headerlink" href="#copy-and-copytree-by-example" title="Permalink to this headline">¶</a></h2>
+<p>copy and copytree behave differently when the target output path exists and is a folder. (this holds DX -&gt; DX and also POSIX -&gt; DX)</p>
+<table border="1" class="docutils" id="id2">
+<caption><span class="caption-text">Copy/copytree example</span><a class="headerlink" href="#id2" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col width="33%" />
+<col width="33%" />
+<col width="33%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">command</th>
+<th class="head">output path (no folder)</th>
+<th class="head">output path (folder exists)</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>stor cp  myfile.vcf dx://project2:/call</td>
+<td>dx://project2:/call</td>
+<td>dx://project2:/call/myfile.vcf</td>
+</tr>
+<tr class="row-odd"><td>stor cp -r ./trip-photos dx://newproject:/all</td>
+<td>dx://newproject:/all</td>
+<td>dx://newproject/all/trip-photos</td>
+</tr>
+</tbody>
+</table>
+<p>Note that if the output path exists and is a file, the file will be <em>overwritten</em></p>
+</div>
+<div class="section" id="list-listdir-and-walkfiles">
+<h2>List, Listdir and walkfiles<a class="headerlink" href="#list-listdir-and-walkfiles" title="Permalink to this headline">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">stor</span> <span class="pre">ls</span></code>, <code class="docutils literal notranslate"><span class="pre">stor</span> <span class="pre">list</span></code> and <code class="docutils literal notranslate"><span class="pre">stor</span> <span class="pre">walkfiles</span></code> for DXPaths take in a <code class="docutils literal notranslate"><span class="pre">--canonicalize</span></code>
+flag which returns the results with canonical dxIDs instead of human readable virtual
+paths. This is especially useful for manipulating paths directly using dx-toolkit
+through piping. This flag is ignored when passed for other paths (swift/s3/posix).</p>
+</div>
+<div class="section" id="open-on-stor">
+<h2>Open on stor<a class="headerlink" href="#open-on-stor" title="Permalink to this headline">¶</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">open</span></code> functionality in dx works by returning an instance of
+<code class="docutils literal notranslate"><span class="pre">stor.obs.OBSFile</span></code> like with other OBS paths(Swift/S3). Although the python
+package of DNAnexus <code class="docutils literal notranslate"><span class="pre">dxpy</span></code> also has an open functionality on their DXFile,
+this is not carried over to stor. One of the main reasons to do this is to wrap
+the scope of dxfile.open to what is expected of stor. As an example, <code class="docutils literal notranslate"><span class="pre">dxpy</span></code>’s
+version of <code class="docutils literal notranslate"><span class="pre">DXFile.open</span></code> does not have <code class="docutils literal notranslate"><span class="pre">readline</span></code> and <code class="docutils literal notranslate"><span class="pre">readlines</span></code> methods
+for reading the file. On the other hand, <code class="docutils literal notranslate"><span class="pre">dxpy</span></code> does support an ‘append’ mode
+to their <code class="docutils literal notranslate"><span class="pre">DXFile.open</span></code> which can be confusing to a stor user, because there
+are very restricted scenarios this can be used in, and the user would have to
+know the different internal states of a file on the DNAnexus platform,
+what they mean, when they happen, what operations are allowed on them, etc.
+By instantiating <code class="docutils literal notranslate"><span class="pre">stor.obs.OBSFile</span></code> for <code class="docutils literal notranslate"><span class="pre">open</span></code>, we maintain the
+support that is standard by stor, without any real decrease in functionality.</p>
+<p>The dx variable exposed as a setting ‘wait_on_close’, has a default value of 0 (seconds). This variable
+determines how long an <code class="docutils literal notranslate"><span class="pre">stor.open</span></code> action waits for the file to go to ‘closed’ state on DNAnexus.
+If a file is not in the ‘closed’ state internally on the platform, it cannot be read from, or
+downloaded. If you need consistency from reading right after writing, then you should set
+wait_on_close to be a value &gt; 0. The default is kept so that in the event of multiple uploads,
+each upload doesn’t wait for <em>wait_on_close</em> seconds before initiating the next upload. However,
+setting <em>wait_on_close</em> &gt; 0 can cause unexpected performance issues, depending on the performance of
+the DNAnexus platform, so you need to know what you’re doing when changing this.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="posix.html" class="btn btn-neutral float-right" title="Posix" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="s3.html" class="btn btn-neutral float-left" title="S3" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015, Counsyl Inc
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
